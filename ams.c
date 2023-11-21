@@ -47,6 +47,10 @@ flight dk5;
 void start();
 void cls();
 void initialize();
+void booked(long, flight); // returns 1 if boarding pass found else 0
+void cancelled(long, char); //removes a boarding pass from the file
+int ticket(long, flight); //add a new user
+void cancel();
 int main()
 {
     start();
@@ -192,5 +196,68 @@ void mumbai()
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dm1));
         break;
-
+    }
+}
+void cancel()
+{
+    long pass;
+    char name[3];
+    printf("Please enter your boarding pass number: ");
+    scanf("%ld", &pass);
+    printf("PLease enter the flight name: ");
+    gets(name);
+    for(int i = 0; i < 2; i++)
+        name[i] = tolower(name[i]);
+    cancelled(pass, name);
+}
+int ticket(long pass, flight x)
+{
+    char path[15], data[10], p[10];
+    sprintf(p, "%ld", pass);
+    strcpy(path, "flights\\");
+    strcat(path, x.name); 
+    FILE *file = fopen(path, "r");
+    if(file == NULL)
+        printf("File Not Found\n");
+    while(fgets(data, sizeof(data), file))
+    {
+        if(!strcmp(p, data))
+            return 1;
+    }
+    return 0;
+}
+void cancelled(long pass, char name)
+{
+    char path[15], data[10], p[10];
+    sprintf(p, "%ld", pass);
+    strcpy(path, "flights\\");
+    strcat(path, name); 
+    FILE *file = fopen(path, "r");
+    if(file == NULL)
+        printf("File Not Found\n");
+    FILE *temp = fopen("temp.txt", "a");
+    if(temp == NULL)
+        printf("File Not Found\n");
+    while(fgets(data, sizeof(data), file))
+    {
+        if(!strcmp(p, data))
+            continue;
+        fprintf(temp, "%s", data);
+    }
+    fclose(file);
+    fclose(temp);
+    remove(path);
+    rename("temp.txt", path);
+}
+void booked(long pass, flight x)
+{
+    char path[15];
+    strcpy(path, "flights\\");
+    strcat(path, x.name); 
+    FILE *file = fopen(path, "a");
+    if(file == NULL)
+        printf("File Not Found\n");
+    fprintf(file, "%ld", pass);
+    fclose(file);
+    return 1;
 }
