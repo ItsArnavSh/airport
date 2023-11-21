@@ -120,10 +120,77 @@ void choose()
 }
 void initialize()
 {
+    //Initialize DM1
     dm1.condition = 1;
     dm1.code = 2341;
     strcpy(dm1.name, "DM1");
     strcpy(dm1.to, "Mumbai");
     strcpy(dm1.company, "Indigo");
     dm1.price = 4900;
+    dm1.rating = 5;
+}
+void book()
+{
+    printf("Press 1 to see flights for Mumbai\n");
+    printf("Press 2 to see flights for Jaipur\n");
+    printf("Press 3 to see flights for Bangalore\n");
+    printf("Press 4 to see flights for Chennai\n");
+    printf("Press 5 to see flights for Kolkata\n");
+    printf("Press 6 to go back\n");
+    int choice;
+    scanf("%d", &choice);
+    switch (choice)
+    {
+    case 1:
+        cls();
+        mumbai();
+        break;
+    case 2:
+        cls();
+        jaipur();
+        break;
+    case 3:
+        cls();
+        bangalore();
+        break;
+    case 4:
+        cls();
+        chennai();
+        break;
+    case 5:
+        cls();
+        kolkata();
+        break;
+    case 6:
+        cls();
+        choose();
+        break;
+    default:
+        printf("Invalid choice\n");
+        break;
+    }
+}
+void mumbai()
+{
+    printf("Following is the data for the flights for mumbai:\n");
+    printf("code\tname\tcompany\tprice\trating\n");
+    printf("%d\t%s\t%s\t%d\t%d\n", dm1.code, dm1.name, dm1.company, dm1.price, dm1.rating);
+    printf("%d\t%s\t%s\t%d\t%d\n", dm2.code, dm2.name, dm2.company, dm2.price, dm2.rating);
+    printf("%d\t%s\t%s\t%d\t%d\n", dm3.code, dm3.name, dm3.company, dm3.price, dm3.rating);
+    printf("%d\t%s\t%s\t%d\t%d\n", dm4.code, dm4.name, dm4.company, dm4.price, dm4.rating);
+    printf("%d\t%s\t%s\t%d\t%d\n", dm5.code, dm5.name, dm5.company, dm5.price, dm5.rating);
+    printf("Enter the code of the flight you want to book\n");
+    int code;
+    scanf("%d",code);
+    switch (code)
+    {
+    case 11111:
+        cls();
+        printf("You have booked the flight DM1\n");
+        long randomNumber;
+        srand(time(NULL)); // Seed the random number generator with current time
+        randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
+        return(booked(randomNumber,dm1));
+        break;
+
 }
