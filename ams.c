@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <unistd.h>
 //------------------
 //Structure for flight
 typedef struct flight
@@ -15,6 +16,8 @@ typedef struct flight
     unsigned int price;
     unsigned int rating;
 }flight;
+long randomNumber;
+int cond;
 //--------------
 //Declaring all the structs
 flight dm1;
@@ -47,10 +50,21 @@ flight dk5;
 void start();
 void cls();
 void initialize();
-void booked(long, flight); // returns 1 if boarding pass found else 0
-void cancelled(long, char); //removes a boarding pass from the file
+int booked(long, flight); // returns 1 if boarding pass found else 0
+void cancelled(long pass, char name[3]); //removes a boarding pass from the file
 int ticket(long, flight); //add a new user
 void cancel();
+void choose();
+void book();
+void help();
+void check();
+void view();
+int mumbai();
+int jaipur();
+int bangalore();
+int chennai();
+int kolkata();
+//--------------
 int main()
 {
     start();
@@ -346,7 +360,7 @@ void book()
     {
     case 1:
         cls();
-        int cond = mumbai();
+        cond = mumbai();
         if(cond==1)
         {
             printf("Successfully Booked the ticket");
@@ -358,7 +372,7 @@ void book()
         break;
     case 2:
         cls();
-        int cond = jaipur();
+        cond = jaipur();
         if(cond==1)
         {
             printf("Successfully Booked the ticket");
@@ -370,7 +384,7 @@ void book()
         break;
     case 3:
         cls();
-        int cond = bangalore();
+        cond = bangalore();
         if(cond==1)
         {
             printf("Successfully Booked the ticket");
@@ -382,11 +396,11 @@ void book()
         break;
     case 4:
         cls();
-        int cond = chennai();
+        cond = chennai();
         break;
     case 5:
         cls();
-        int cond = kolkata();
+        cond = kolkata();
         if(cond==1)
         {
             printf("Successfully Booked the ticket");
@@ -416,46 +430,47 @@ int mumbai()
     printf("%d\t%s\t%s\t%d\t%d\n", dm5.code, dm5.name, dm5.company, dm5.price, dm5.rating);
     printf("Enter the code of the flight you want to book\n");
     int code;
-    scanf("%d",code);
+    scanf("%d",&code);
+    //To help book a flight
     switch (code)
     {
     case 11111:
         cls();
         printf("You have booked the flight DM1\n");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dm1));
         break;
     case 11112:
         cls();
         printf("You have booked the flight DM2\n");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dm2));
         break;
     case 11113:
         cls();
         printf("You have booked the flight DM3\n");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dm3));
         break;
     case 11114:
         cls();
         printf("You have booked the flight DM4\n");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dm4));
         break;
     case 11115:
         cls();
         printf("You have booked the flight DM5\n");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dm5));
         break;
@@ -463,6 +478,7 @@ int mumbai()
     printf("There is not flight by that code\n");
         break;
     }
+    return 0;
 }
 int jaipur()
 {
@@ -475,46 +491,46 @@ int jaipur()
     printf("%d\t%s\t%s\t%d\t%d\n", dj5.code, dj5.name, dj5.company, dj5.price, dj5.rating);
     printf("Enter the code of the flight you want to book\n");
     int code;
-    scanf("%d",code);
+    scanf("%d",&code);
     switch (code)
     {
     case 22221:
         cls();
         printf("You have booked the flight DJ1\n");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dj1));
         break;
     case 22222:
         cls();
         printf("You have booked the flight DJ2\n");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dj2));
         break;
     case 22223:
         cls();
         printf("You have booked the flight DJ3\n");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dj3));
         break;
     case 22224:
         cls();
         printf("You have booked the flight DJ4\n");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dj4));
         break;
     case 22225:
         cls();
         printf("You have booked the flight DJ5\n");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dj5));
         break;
@@ -522,6 +538,7 @@ int jaipur()
         printf("There is not flight by that code\n");
             break;
     }
+    return 0;
 }
 int bangalore()
 {
@@ -534,46 +551,46 @@ int bangalore()
     printf("%d\t%s\t%s\t%d\t%d\n", db5.code, db5.name, db5.company, db5.price, db5.rating);
     printf("Enter the code of the flight you want to book\n");
     int code;
-    scanf("%d",code);
+    scanf("%d",&code);
     switch (code)
     {
     case 33331:
         cls();
         printf("You have booked the flight DB1\n");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,db1));
         break;
     case 33332:
         cls();
         printf("You have booked the flight DB2");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,db2));
         break;
     case 33333:
         cls();
         printf("You have booked the flight DB3");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,db3));
         break;
     case 33334:
         cls();
         printf("You have booked the flight DB4");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,db4));
         break;
     case 33335:
         cls();
         printf("You have booked the flight DB5");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,db5));
         break;
@@ -581,6 +598,7 @@ int bangalore()
     printf("There is not flight by that code\n");
     break;
 }
+return 0;
 }
 int chennai()
 {
@@ -593,46 +611,46 @@ int chennai()
     printf("%d\t%s\t%s\t%d\t%d\n", dc5.code, dc5.name, dc5.company, dc5.price, dc5.rating);
     printf("Enter the code of the flight you want to book\n");
     int code;
-    scanf("%d",code);
+    scanf("%d",&code);
     switch (code)
     {
     case 44441:
         cls();
         printf("You have booked the flight DC1\n");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dc1));
         break;
     case 44442:
         cls();
         printf("You have booked the flight DC2");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dc2));
         break;
     case 44443:
         cls();
         printf("You have booked the flight DC3");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dc3));
         break;
     case 44444:
         cls();
         printf("You have booked the flight DC4");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dc4));
         break;
     case 44445:
         cls();
         printf("You have booked the flight DC5");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dc5));
         break;
@@ -640,6 +658,7 @@ int chennai()
     printf("There is not flight by that code\n");
     break;
 }
+return 0;
 }
 int kolkata()
 {
@@ -652,54 +671,56 @@ int kolkata()
     printf("%d\t%s\t%s\t%d\t%d\n", dk5.code, dk5.name, dk5.company, dk5.price, dk5.rating);
     printf("Enter the code of the flight you want to book\n");
     int code;
-    scanf("%d",code);
+    scanf("%d",&code);
     switch (code)
     {
     case 55551:
         cls();
         printf("You have booked the flight DK1\n");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dk1));
         break;
     case 55552:
         cls();
         printf("You have booked the flight DK2");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dk2));
         break;
     case 55553:
         cls();
         printf("You have booked the flight DK3");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dk3));
         break;
     case 55554:
         cls();
         printf("You have booked the flight DK4");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dk4));
         break;
     case 55555:
         cls();
         printf("You have booked the flight Dk5");
-        long randomNumber;
-        srand(time(NULL)); // Seed the random number generator with current time
+        //To help book a flight
+        srand(time_t(NULL)); // Seed the random number generator with current time
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dk5));
         break;
     default:
     printf("There is not flight by that code\n");
     break;
-}    }
 }
+return 0;
+}
+
 void cancel()
 {
     long pass;
@@ -707,7 +728,7 @@ void cancel()
     printf("Please enter your boarding pass number: ");
     scanf("%ld", &pass);
     printf("PLease enter the flight name: ");
-    gets(name);
+    scanf("%s",name);
     for(int i = 0; i < 2; i++)
         name[i] = tolower(name[i]);
     cancelled(pass, name);
@@ -728,7 +749,7 @@ int ticket(long pass, flight x)
     }
     return 0;
 }
-void cancelled(long pass, char name)
+void cancelled(long pass, char name[3])
 {
     char path[15], data[10], p[10];
     sprintf(p, "%ld", pass);
@@ -751,7 +772,7 @@ void cancelled(long pass, char name)
     remove(path);
     rename("temp.txt", path);
 }
-void booked(long pass, flight x)
+int booked(long pass, flight x)
 {
     char path[15];
     strcpy(path, "flights\\");
@@ -762,4 +783,18 @@ void booked(long pass, flight x)
     fprintf(file, "%ld", pass);
     fclose(file);
     return 1;
+}
+void help()
+{
+    //All the help here
+    return;
+}
+void check()
+{
+    //Check here
+    return;
+}
+void view()
+{
+    //View your flight here
 }
