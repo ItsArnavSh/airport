@@ -884,8 +884,6 @@ void cancel()
     scanf("%ld", &pass);
     printf("PLease enter the flight name: ");
     scanf("%s",name);
-    for(int i = 0; i < 2; i++)
-        name[i] = tolower(name[i]);
     cancelled(pass, name);
     printf("Your flight has been cancelled\n");
     printf("We are sorry to see you go\n");
@@ -913,14 +911,22 @@ void cancelled(long pass, char name[3])
 {
     char path[15], data[10], p[10];
     sprintf(p, "%ld", pass);
-    strcpy(path, "flights\\");
+    strcpy(path, "flights/");
     strcat(path, name); 
+    strcat(path, ".txt");
     FILE *file = fopen(path, "r");
+    printf("%s\n",path);
     if(file == NULL)
+    {
         printf("File Not Found\n");
-    FILE *temp = fopen("temp.txt", "a");
+        exit(0);
+    }
+    FILE *temp = fopen("flights/temp.txt", "a");
     if(temp == NULL)
+    {
         printf("File Not Found\n");
+        exit(0);
+    }
     while(fgets(data, sizeof(data), file))
     {
         if(!strcmp(p, data))
@@ -930,7 +936,7 @@ void cancelled(long pass, char name[3])
     fclose(file);
     fclose(temp);
     remove(path);
-    rename("temp.txt", path);
+    rename("flights/temp.txt", path);
 }
 //To check if the person is booked for sure
 int booked(long pass, flight x)
