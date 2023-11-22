@@ -45,25 +45,35 @@ flight dk2;
 flight dk3;
 flight dk4;
 flight dk5;
+flight da1;
+flight da2;
+flight da3;
+flight da4;
+flight da5;
 //--------------
 //Functions
 void start();
 void cls();
 void initialize();
-int booked(long, flight); // returns 1 if boarding pass found else 0
-void cancelled(long pass, char name[3]); //removes a boarding pass from the file
-int ticket(long, flight); //add a new user
+int booked(long, flight); 
+// returns 1 if boarding pass found else 0
+void cancelled(long pass, char name[3]); 
+//removes a boarding pass from the file
+int ticket(long, flight); 
+//add a new user
 void cancel();
 void choose();
 void book();
 void help();
 void check();
-void view();
 int mumbai();
 int jaipur();
 int bangalore();
 int chennai();
 int kolkata();
+int ahemdabad();
+void sorrycancel();
+void survey();
 //--------------
 int main()
 {
@@ -102,11 +112,14 @@ void start()
 }
 void choose()
 {
+    while(1==1)
+    {
+    cls();
     printf("Please choose one of the following options:\n");
     printf("1. Book a new flight\n");
     printf("2. Cancel a flight\n");
     printf("3. Check your flight status\n");
-    printf("4. View all flights\n");
+    printf("4. Add a review\n");
     printf("5. Exit\n");
     int choice;
     scanf("%d", &choice);
@@ -126,7 +139,7 @@ void choose()
         break;
     case 4:
         cls();
-        view();
+        survey();
         break;
     case 5:
         exit(0);
@@ -135,7 +148,9 @@ void choose()
         printf("Invalid choice\n");
         break;
     }
+    }
 }
+//To initialize all the structures
 void initialize()
 {
     dm1.condition = 1;
@@ -148,33 +163,33 @@ void initialize()
 
 dm2.condition = 1;
     dm2.code = 11112;
-    strcpy(dm2.name, "DM1");
+    strcpy(dm2.name, "DM2");
     strcpy(dm2.to, "Mumbai");
-    strcpy(dm2.company, "Air india");
+    strcpy(dm2.company, "AirInd");
     dm2.price = 4700;
     dm2.rating = 3;
 
 dm3.condition = 1;
     dm3.code = 11113;
-    strcpy(dm3.name, "DM1");
+    strcpy(dm3.name, "DM3");
     strcpy(dm3.to, "Mumbai");
-    strcpy(dm3.company, "Spicejet");
+    strcpy(dm3.company, "Spicj");
     dm3.price = 4600;
     dm3.rating = 2;
 
 dm4.condition = 1;
     dm4.code = 11114;
-    strcpy(dm4.name, "DM1");
+    strcpy(dm4.name, "DM4");
     strcpy(dm4.to, "Mumbai");
-    strcpy(dm4.company, "Air India Exxpress");
+    strcpy(dm4.company, "AIndEx");
     dm4.price = 4500;
     dm4.rating = 1;
 
 dm5.condition = 1;
     dm5.code = 11115;
-    strcpy(dm5.name, "DM1");
+    strcpy(dm5.name, "DM5");
     strcpy(dm5.to, "Mumbai");
-    strcpy(dm5.company, "Vistara");
+    strcpy(dm5.company, "Vistra");
     dm5.price = 4800;
     dm5.rating = 4;
 
@@ -192,7 +207,7 @@ dm5.condition = 1;
     dj2.code = 22222;
     strcpy(dj2.name, "DJ2");
     strcpy(dj2.to, "Jaipur");
-    strcpy(dj2.company, "Air India");
+    strcpy(dj2.company, "AirInd");
     dj2.price = 3200;
     dj2.rating = 3;
 
@@ -200,7 +215,7 @@ dm5.condition = 1;
     dj3.code = 22223;
     strcpy(dj3.name, "DJ3");
     strcpy(dj3.to, "Jaipur");
-    strcpy(dj3.company, "Spicejet");
+    strcpy(dj3.company, "Spicj");
     dj3.price = 3100;
     dj3.rating = 2;
 
@@ -208,7 +223,7 @@ dm5.condition = 1;
     dj4.code = 22224;
     strcpy(dj4.name, "DJ4");
     strcpy(dj4.to, "Jaipur");
-    strcpy(dj4.company, "Air India Express");
+    strcpy(dj4.company, "AIndEx");
     dj4.price = 3000;
     dj4.rating = 1;
 
@@ -216,7 +231,7 @@ dm5.condition = 1;
     dj5.code = 22225;
     strcpy(dj5.name, "DJ5");
     strcpy(dj5.to, "Jaipur");
-    strcpy(dj5.company, "Vistara");
+    strcpy(dj5.company, "Vistra");
     dj5.price = 3300;
     dj5.rating = 4;
 
@@ -234,7 +249,7 @@ dm5.condition = 1;
     db2.code = 33332;
     strcpy(db2.name, "DB2");
     strcpy(db2.to, "Banglore");
-    strcpy(db2.company, "Air India");
+    strcpy(db2.company, "AirInd");
     db2.price = 4200;
     db2.rating = 3;
 
@@ -242,7 +257,7 @@ dm5.condition = 1;
     db3.code = 33333;
     strcpy(db3.name, "DB3");
     strcpy(db3.to, "Banglore");
-    strcpy(db3.company, "Spicejet");
+    strcpy(db3.company, "Spicj");
     db3.price = 4100;
     db3.rating = 2;
 
@@ -250,7 +265,7 @@ dm5.condition = 1;
     db4.code = 33334;
     strcpy(db4.name, "DB4");
     strcpy(db4.to, "Banglore");
-    strcpy(db4.company, "Air India Express");
+    strcpy(db4.company, "AIndEx");
     db4.price = 4000;
     db4.rating = 1;
 
@@ -258,7 +273,7 @@ dm5.condition = 1;
     db5.code = 33335;
     strcpy(db5.name, "DB5");
     strcpy(db5.to, "Banglore");
-    strcpy(db5.company, "Vistara");
+    strcpy(db5.company, "Vistra");
     db5.price = 4300;
     db5.rating = 4;
 
@@ -276,7 +291,7 @@ dm5.condition = 1;
     dc2.code = 44442;
     strcpy(dc2.name, "DC2");
     strcpy(dc2.to, "Chennai");
-    strcpy(dc2.company, "Air India");
+    strcpy(dc2.company, "AirInd");
     dc2.price = 5200;
     dc2.rating = 3;
 
@@ -284,7 +299,7 @@ dm5.condition = 1;
     dc3.code = 44443;
     strcpy(dc3.name, "DC3");
     strcpy(dc3.to, "Chennai");
-    strcpy(dc3.company, "Spicejet");
+    strcpy(dc3.company, "Spicj");
     dc3.price = 5100;
     dc3.rating = 2;
 
@@ -292,7 +307,7 @@ dm5.condition = 1;
     dc4.code = 44444;
     strcpy(dc4.name, "DC4");
     strcpy(dc4.to, "Chennai");
-    strcpy(dc4.company, "Air India Express");
+    strcpy(dc4.company, "AIndEx");
     dc4.price = 5000;
     dc4.rating = 1;
 
@@ -300,7 +315,7 @@ dm5.condition = 1;
     dc5.code = 44445;
     strcpy(dc5.name, "DC5");
     strcpy(dc5.to, "Chennai");
-    strcpy(dc5.company, "Vistara");
+    strcpy(dc5.company, "Vistra");
     dc5.price = 5300;
     dc5.rating = 4;
 
@@ -318,7 +333,7 @@ dm5.condition = 1;
     dk2.code = 55552;
     strcpy(dk2.name, "DK2");
     strcpy(dk2.to, "Kolkata");
-    strcpy(dk2.company, "Air India");
+    strcpy(dk2.company, "AirInd");
     dk2.price = 3700;
     dk2.rating = 3;
 
@@ -326,7 +341,7 @@ dm5.condition = 1;
     dk3.code = 55553;
     strcpy(dk3.name, "DK3");
     strcpy(dk3.to, "Kolkata");
-    strcpy(dk3.company, "Spicejet");
+    strcpy(dk3.company, "Spicj");
     dk3.price = 3600;
     dk3.rating = 2;
 
@@ -334,7 +349,7 @@ dm5.condition = 1;
     dk4.code = 55554;
     strcpy(dk4.name, "DK4");
     strcpy(dk4.to, "Kolkata");
-    strcpy(dk4.company, "Air India Express");
+    strcpy(dk4.company, "AIndEx");
     dk4.price = 3500;
     dk4.rating = 1;
 
@@ -342,9 +357,49 @@ dm5.condition = 1;
     dk5.code = 55555;
     strcpy(dk5.name, "DK5");
     strcpy(dk5.to, "Kolkata");
-    strcpy(dk5.company, "Vistara");
+    strcpy(dk5.company, "Vistra");
     dk5.price = 3800;
     dk5.rating = 4;
+//--------------------------------------------------------------------------------------------------
+    da1.condition = 1;
+    da1.code = 66661;
+    strcpy(da1.name, "DA1");
+    strcpy(da1.to, "Ahemdabad");
+    strcpy(da1.company, "Indigo");
+    da1.price = 5900;
+    da1.rating = 4;
+
+    da2.condition = 1;
+    da2.code = 66662;
+    strcpy(da2.name, "DA2");
+    strcpy(da2.to, "Ahemdabad");
+    strcpy(da2.company, "AirInd");
+    da2.price = 5700;
+    da2.rating = 3;
+
+    da3.condition = 1;
+    da3.code = 66663;
+    strcpy(da3.name, "DA3");
+    strcpy(da3.to, "Ahemdabad");
+    strcpy(da3.company, "Spijet");
+    da3.price = 5600;
+    da3.rating = 2;
+
+    da4.condition = 1;
+    da4.code = 66664;
+    strcpy(da4.name, "DA4");
+    strcpy(da4.to, "Ahemdabad");
+    strcpy(da4.company, "AIndEx");
+    da4.price = 5500;
+    da4.rating = 1;
+
+    da5.condition = 1;
+    da5.code = 66665;
+    strcpy(da5.name, "DA5");
+    strcpy(da5.to, "Ahemdabad");
+    strcpy(da5.company, "Vistra");
+    da5.price = 5800;
+    da5.rating = 4;
 }
 void book()
 {
@@ -353,7 +408,8 @@ void book()
     printf("Press 3 to see flights for Bangalore\n");
     printf("Press 4 to see flights for Chennai\n");
     printf("Press 5 to see flights for Kolkata\n");
-    printf("Press 6 to go back\n");
+    printf("Press 6 to see flights for Ahemdabad\n");
+    printf("Press 7 to go back\n");
     int choice;
     scanf("%d", &choice);
     switch (choice)
@@ -364,6 +420,7 @@ void book()
         if(cond==1)
         {
             printf("Successfully Booked the ticket");
+            printf("\nYOUR BOARDING PASS NUMBER IS: %ld",randomNumber);
         }
         else
         {
@@ -376,10 +433,12 @@ void book()
         if(cond==1)
         {
             printf("Successfully Booked the ticket");
+            printf("\nYOUR BOARDING PASS NUMBER IS: %ld",randomNumber);
         }
         else
         {
             printf("Unable to book your ticket.\n");
+            printf("\nYOUR BOARDING PASS NUMBER IS: %ld",randomNumber);
         }
         break;
     case 3:
@@ -388,10 +447,12 @@ void book()
         if(cond==1)
         {
             printf("Successfully Booked the ticket");
+            printf("\nYOUR BOARDING PASS NUMBER IS: %ld",randomNumber);
         }
         else
         {
             printf("Unable to book your ticket.\n");
+            printf("\nYOUR BOARDING PASS NUMBER IS: %ld",randomNumber);
         }
         break;
     case 4:
@@ -411,6 +472,18 @@ void book()
         }
         break;
     case 6:
+        cls();
+        cond = ahemdabad();
+        if(cond==1)
+        {
+            printf("Successfully Booked the ticket");
+        }
+        else
+        {
+            printf("Unable to book your ticket.\n");
+        }
+        break;
+    case 7:
         cls();
         choose();
         break;
@@ -438,7 +511,8 @@ int mumbai()
         cls();
         printf("You have booked the flight DM1\n");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dm1));
         break;
@@ -446,7 +520,8 @@ int mumbai()
         cls();
         printf("You have booked the flight DM2\n");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dm2));
         break;
@@ -454,7 +529,8 @@ int mumbai()
         cls();
         printf("You have booked the flight DM3\n");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dm3));
         break;
@@ -462,7 +538,8 @@ int mumbai()
         cls();
         printf("You have booked the flight DM4\n");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dm4));
         break;
@@ -470,7 +547,8 @@ int mumbai()
         cls();
         printf("You have booked the flight DM5\n");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dm5));
         break;
@@ -498,7 +576,8 @@ int jaipur()
         cls();
         printf("You have booked the flight DJ1\n");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dj1));
         break;
@@ -506,7 +585,8 @@ int jaipur()
         cls();
         printf("You have booked the flight DJ2\n");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
         return(booked(randomNumber,dj2));
         break;
@@ -514,7 +594,8 @@ int jaipur()
         cls();
         printf("You have booked the flight DJ3\n");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dj3));
         break;
@@ -522,7 +603,8 @@ int jaipur()
         cls();
         printf("You have booked the flight DJ4\n");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dj4));
         break;
@@ -530,7 +612,8 @@ int jaipur()
         cls();
         printf("You have booked the flight DJ5\n");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dj5));
         break;
@@ -558,7 +641,8 @@ int bangalore()
         cls();
         printf("You have booked the flight DB1\n");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,db1));
         break;
@@ -566,7 +650,8 @@ int bangalore()
         cls();
         printf("You have booked the flight DB2");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,db2));
         break;
@@ -574,7 +659,8 @@ int bangalore()
         cls();
         printf("You have booked the flight DB3");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,db3));
         break;
@@ -582,7 +668,8 @@ int bangalore()
         cls();
         printf("You have booked the flight DB4");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,db4));
         break;
@@ -590,7 +677,8 @@ int bangalore()
         cls();
         printf("You have booked the flight DB5");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,db5));
         break;
@@ -618,7 +706,8 @@ int chennai()
         cls();
         printf("You have booked the flight DC1\n");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dc1));
         break;
@@ -626,7 +715,8 @@ int chennai()
         cls();
         printf("You have booked the flight DC2");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dc2));
         break;
@@ -634,7 +724,8 @@ int chennai()
         cls();
         printf("You have booked the flight DC3");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dc3));
         break;
@@ -642,7 +733,8 @@ int chennai()
         cls();
         printf("You have booked the flight DC4");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dc4));
         break;
@@ -650,7 +742,8 @@ int chennai()
         cls();
         printf("You have booked the flight DC5");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+ // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dc5));
         break;
@@ -678,7 +771,8 @@ int kolkata()
         cls();
         printf("You have booked the flight DK1\n");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+ // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dk1));
         break;
@@ -686,7 +780,8 @@ int kolkata()
         cls();
         printf("You have booked the flight DK2");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dk2));
         break;
@@ -694,7 +789,8 @@ int kolkata()
         cls();
         printf("You have booked the flight DK3");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dk3));
         break;
@@ -702,7 +798,8 @@ int kolkata()
         cls();
         printf("You have booked the flight DK4");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time_t
+        srand(time(NULL));
+     // Seed the random number generator with current time_t
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dk4));
         break;
@@ -710,7 +807,7 @@ int kolkata()
         cls();
         printf("You have booked the flight Dk5");
         //To help book a flight
-        srand(time_t(NULL)); // Seed the random number generator with current time
+        srand(time(NULL)); // Seed the random number generator with current time
         randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
         return(booked(randomNumber,dk5));
         break;
@@ -720,7 +817,65 @@ int kolkata()
 }
 return 0;
 }
-
+int ahemdabad()
+{
+    printf("Following is the data for the flights for ahemdabad:\n");
+    printf("code\tname\tcompany\tprice\trating\n");
+    printf("%d\t%s\t%s\t%d\t%d\n", da1.code, da1.name, da1.company, da1.price, da1.rating);
+    printf("%d\t%s\t%s\t%d\t%d\n", da2.code, da2.name, da2.company, da2.price, da2.rating);
+    printf("%d\t%s\t%s\t%d\t%d\n", da3.code, da3.name, da3.company, da3.price, da3.rating);
+    printf("%d\t%s\t%s\t%d\t%d\n", da4.code, da4.name, da4.company, da4.price, da4.rating);
+    printf("%d\t%s\t%s\t%d\t%d\n", da5.code, da5.name, da5.company, da5.price, da5.rating);
+    printf("Enter the code of the flight you want to book\n");
+    int code;
+    scanf("%d",&code);
+    switch (code)
+    {
+    case 66661:
+        cls();
+        printf("You have booked the flight DA1\n");
+        //To help book a flight
+        srand(time(NULL)); // Seed the random number generator with current time
+        randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000; 
+        return(booked(randomNumber,da1));
+        break;
+    case 66662:
+        cls();
+        printf("You have booked the flight DA2");
+        //To help book a flight
+        srand(time(NULL)); // Seed the random number generator with current time
+        randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
+        return(booked(randomNumber,da2));
+        break;
+    case 66663:
+        cls();
+        printf("You have booked the flight DA3");
+        //To help book a flight
+        srand(time(NULL)); // Seed the random number generator with current time
+        randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
+        return(booked(randomNumber,da3));
+        break;
+    case 66664:
+        cls();
+        printf("You have booked the flight DA4");
+        //To help book a flight
+        srand(time(NULL)); // Seed the random number generator with current time
+        randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
+        return(booked(randomNumber,da4));
+        break;
+    case 66665:
+        cls();
+        printf("You have booked the flight DA5");
+        //To help book a flight
+        srand(time(NULL)); // Seed the random number generator with current time
+        randomNumber = rand() % (999999999 - 100000000 + 1) + 100000000;
+        return(booked(randomNumber,da5));
+        break;
+    default:
+    printf("There is not flight by that code\n");
+    break;
+    }
+}
 void cancel()
 {
     long pass;
@@ -732,16 +887,20 @@ void cancel()
     for(int i = 0; i < 2; i++)
         name[i] = tolower(name[i]);
     cancelled(pass, name);
+    printf("Your flight has been cancelled\n");
+    printf("We are sorry to see you go\n");
+    sorrycancel();
 }
+//To register a new passenger
 int ticket(long pass, flight x)
 {
     char path[15], data[10], p[10];
     sprintf(p, "%ld", pass);
-    strcpy(path, "flights\\");
+    strcpy(path, "flights/");
     strcat(path, x.name); 
     FILE *file = fopen(path, "r");
     if(file == NULL)
-        printf("File Not Found\n");
+        printf("File Not Found/");
     while(fgets(data, sizeof(data), file))
     {
         if(!strcmp(p, data))
@@ -749,6 +908,7 @@ int ticket(long pass, flight x)
     }
     return 0;
 }
+//Cancel
 void cancelled(long pass, char name[3])
 {
     char path[15], data[10], p[10];
@@ -772,29 +932,265 @@ void cancelled(long pass, char name[3])
     remove(path);
     rename("temp.txt", path);
 }
+//To check if the person is booked for sure
 int booked(long pass, flight x)
 {
-    char path[15];
-    strcpy(path, "flights\\");
-    strcat(path, x.name); 
+    char path[20];
+    strcpy(path, "flights/");
+    strcat(path, x.name);
+    strcat(path, ".txt"); 
+    printf("%s",path);
     FILE *file = fopen(path, "a");
     if(file == NULL)
         printf("File Not Found\n");
-    fprintf(file, "%ld", pass);
+    fprintf(file, "%ld\n", pass);
     fclose(file);
     return 1;
 }
 void help()
 {
     //All the help here
+    int tem;
+    printf("Welcome to the help section of Airport management system");
+    printf("\nEnter any number to continue: ");
+    scanf("%d",&tem);
+    cls();
+    printf("We support flights to 5 major cities:");
+    printf("\nMumbai");
+    printf("\nJaipur");
+    printf("\nBengaluru");
+    printf("\nKolkata");
+    printf("\nChennai");
+    printf("\nAhemdabad");
+    printf("\nEnter any number to continue: ");
+    scanf("%d",&tem);
+    cls();
+    printf("5 companies provide their service at our airport: \n");
+    printf("\nAir India");
+    printf("\nAir India Express");
+    printf("\nSpiceJet");
+    printf("\nVistara");
+    printf("\nIndigo");
+    printf("\nEnter any number to continue: ");
+    scanf("%d",&tem);
+    cls();
+    printf("You are presented with a menu for booking a ticket, cancelling your ticket and checking your booking status\n");
+    printf("\nEnter any number to continue: ");
+    scanf("%d",&tem);
+    cls();
+    printf("When you book a new ticket, you are given a booking pass, and you must remember it\n");
+    printf("\nEnter any number to continue: ");
+    scanf("%d",&tem);
+    cls();
+    printf("You can check your booking details simply from the menu by entering your flight name in CAPS and the booking pass id\n");
+    printf("\nEnter any number to continue: ");
+    scanf("%d",&tem);
+    cls();
+    printf("You can cancel the flight if you want from the menu\n");
+    printf("\nEnter any number to continue: ");
+    scanf("%d",&tem);
+    cls();
+    printf("Hope this helps");
+    printf("\nHappy Flying\n");
+    printf("\nEnter any number to continue: ");
+    scanf("%d",&tem);
+    cls();
+
     return;
 }
 void check()
 {
-    //Check here
-    return;
+    ask:
+    //To check all the bookings in the flight
+    printf("Please Enter your flight name: ");
+    char name[3];
+    scanf("%s",name);
+    printf("Please enter your boarding pass: ");
+    char pass[20];
+    scanf("%s", pass);
+    //Now we will make a string of the path
+    char path[20];
+    strcpy(path, "flights/");
+    strcat(path, name);
+    strcat(path,".txt");
+    FILE *file = fopen(path, "r");
+    if(file == NULL)
+    {
+        printf("File Not Found\n");
+        printf("Please ensure you entered the correct flight name\n");
+        cls();
+        goto ask;
+    }
+    char data[10];
+    while(fgets(data, sizeof(data), file))
+    {
+        if(!strcmp(pass, data))
+        {
+            printf("Your flight is confirmed\n");
+            return;
+        }
+        else
+        {
+            printf("Your flight is not confirmed\n");
+            return;
+        }
+    }
 }
-void view()
+void sorrycancel()
 {
-    //View your flight here
+    printf("We are really disappointed to see you go\n");
+    printf("Before you go, please give us a quick survey\n");
+    printf("Press 1 if you are satisfied with our service\n");
+    printf("Press 2 if you are not satisfied with our service\n");
+    int choice;
+    scanf("%d",&choice);
+    switch (choice)
+    {
+    case 1:
+        printf("Thank you for your feedback\n");
+        break;
+    case 2:
+        printf("We are sorry for the inconvenience caused\n");
+        break;
+    default:
+        printf("Invalid choice\n");
+        break;
+    }
+    printf("Can you describe your experience in one word?\n");
+    char word[20];
+    scanf("%s",word);
+    printf("Thank you for your feedback\n");
+    printf("Can you please tell us what we can do to improve our service?\n");
+    char feedback[100];
+    scanf("%s",feedback);
+    printf("We hope to see you again\n");
 }
+void survey()
+{
+    printf("We are glad to see you here\n");
+    printf("We would like to ask you a few questions\n");
+    //Ask about the customer service
+    printf("How would you rate our customer service on a scale of 1 to 5?\n");
+    int service;
+    scanf("%d",&service);
+    if(service<1 || service>5)
+    {
+        printf("Invalid choice\n");
+        printf("Please enter a number between 1 and 5\n");
+        scanf("%d",&service);
+    }
+    if(service>=4)
+    {
+        printf("We are glad you liked our service\n");
+    }
+    else
+    {
+        printf("We are sorry you did not like our service\n");
+    }
+    //Ask about the cleanliness
+    printf("How would you rate our cleanliness on a scale of 1 to 5?\n");
+    int clean;
+    scanf("%d",&clean);
+    if(clean<1 || clean>5)
+    {
+        printf("Invalid choice\n");
+        printf("Please enter a number between 1 and 5\n");
+        scanf("%d",&clean);
+    }
+    if(clean>=4)
+    {
+        printf("We are glad you liked our cleanliness\n");
+    }
+    else
+    {
+        printf("We are sorry you did not like our cleanliness\n");
+    }
+    //Ask about the food
+    printf("How would you rate our food on a scale of 1 to 5?\n");
+    int food;
+    scanf("%d",&food);
+    if(food<1 || food>5)
+    {
+        printf("Invalid choice\n");
+        printf("Please enter a number between 1 and 5\n");
+        scanf("%d",&food);
+    }
+    if(food>=4)
+    {
+        printf("We are glad you liked our food\n");
+    }
+    else
+    {
+        printf("We are sorry you did not like our food\n");
+    }
+    //Ask about the comfort
+    printf("How would you rate our comfort on a scale of 1 to 5?\n");
+    int comfort;
+    scanf("%d",&comfort);
+    if(comfort<1 || comfort>5)
+    {
+        printf("Invalid choice\n");
+        printf("Please enter a number between 1 and 5\n");
+        scanf("%d",&comfort);
+    }
+    if(comfort>=4)
+    {
+        printf("We are glad you liked our comfort\n");
+    }
+    else
+    {
+        printf("We are sorry you did not like our comfort\n");
+    }
+    //Ask about the entertainment
+    printf("How would you rate our entertainment on a scale of 1 to 5?\n");
+    int entertainment;
+    scanf("%d",&entertainment);
+    if(entertainment<1 || entertainment>5)
+    {
+        printf("Invalid choice\n");
+        printf("Please enter a number between 1 and 5\n");
+        scanf("%d",&entertainment);
+    }
+    if(entertainment>=4)
+    {
+        printf("We are glad you liked our entertainment\n");
+    }
+    else
+    {
+        printf("We are sorry you did not like our entertainment\n");
+    }
+    //Ask about the overall experience
+    printf("How would you rate your overall experience on a scale of 1 to 5?\n");
+    int overall;
+    scanf("%d",&overall);
+    if(overall<1 || overall>5)
+    {
+        printf("Invalid choice\n");
+        printf("Please enter a number between 1 and 5\n");
+        scanf("%d",&overall);
+    }
+    if(overall>=4)
+    {
+        printf("We are glad you liked your overall experience\n");
+    }
+    else
+    {
+        printf("We are sorry you did not like your overall experience\n");
+    }
+    printf("Thank you for your feedback\n");
+    printf("We hope to see you again\n");
+}
+/*
+Submitted BY
+Prakshi Jain
+-
+Vijaya Singh
+-
+Saara Goyal
+-
+Krishna Gupta
+-
+Batch of 2027
+Jaypee Institute of Information Technology
+Noida, Sector 62
+*/
